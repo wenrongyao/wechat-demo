@@ -8,8 +8,8 @@ import com.thoughtworks.xstream.io.xml.XppDriver;
 import org.dom4j.Element;
 
 import java.io.Writer;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class XmlUtil {
     /**
@@ -22,11 +22,9 @@ public class XmlUtil {
             return new PrettyPrintWriter(out) {
                 // 对所有xml节点的转换都增加CDATA标记
                 boolean cdata = true;
-
                 public void startNode(String name, @SuppressWarnings("rawtypes") Class clazz) {
                     super.startNode(name, clazz);
                 }
-
                 protected void writeText(QuickWriter writer, String text) {
                     if (cdata) {
                         writer.write("<![CDATA[");
@@ -46,7 +44,7 @@ public class XmlUtil {
      * @param root 根节点
      * @param map 返回的map
      */
-    public static void parserXml(Element root, HashMap<String, String> map) {
+    public static void parserXml(Element root, Map<String, String> map) {
         // 得到根元素的所有子节点
         @SuppressWarnings("unchecked")
         List<Element> elementList = root.elements();

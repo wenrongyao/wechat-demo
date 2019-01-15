@@ -16,4 +16,11 @@ public class Constant {
         public static final String TOKEN = "3TogaRqRElr";
         public static final String ENCODINGAESKEY = "eJ8JxunSiFjpDq3y05LuSO5A0Vt9Qlk1UUVGlkidCSP";
     }
+
+    /**
+     * 消息类型
+     */
+    public class MsgType {
+        public static final String TEXT = "text";
+    }
 }

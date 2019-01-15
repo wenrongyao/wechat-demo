@@ -37,8 +37,8 @@ import java.util.Map;
  * on 2018/10/22.
  */
 public class HttpRequest {
-    private static final String PROXY_HOST_NAME = "132.122.1.4";
-    private static final int PROXY_PORT = 9898;
+    private static final String PROXY_HOST_NAME = "";
+    private static final int PROXY_PORT = 0;
     private static final String PROXY_SCHEME = "http";
     // 需要代理请改为true
     private static final boolean OPEN_PROXY = false;
