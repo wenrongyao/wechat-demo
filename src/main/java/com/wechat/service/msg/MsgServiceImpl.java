@@ -39,4 +39,18 @@ public class MsgServiceImpl implements IMsgService {
         XmlUtil.xstream.alias("xml", TextReplyMsg.class);
         return XmlUtil.xstream.toXML(textReplyMsg);
     }
+
+    @Override
+    public String returnText(Map<String, String> map, String content) {
+        // 构建回复消息
+        TextReplyMsg textReplyMsg = new TextReplyMsg();
+        textReplyMsg.setToUserName(map.get("FromUserName"));
+        textReplyMsg.setFromUserName(map.get("ToUserName"));
+        textReplyMsg.setCreateTime(new Date().getTime());
+        textReplyMsg.setMsgType(Constant.MsgType.TEXT);
+        textReplyMsg.setContent(content);
+        // 将pojo对象转成xml
+        XmlUtil.xstream.alias("xml", TextReplyMsg.class);
+        return XmlUtil.xstream.toXML(textReplyMsg);
+    }
 }

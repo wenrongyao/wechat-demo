@@ -1,6 +1,7 @@
 package com.wechat.controller;
 
 import com.wechat.constant.Constant;
+import com.wechat.model.msg.Message;
 import com.wechat.service.msg.IMsgService;
 import com.wechat.util.XmlUtil;
 import com.wechat.util.aes.AesException;
@@ -10,6 +11,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +30,10 @@ public class EntryController {
     @Autowired
     private IMsgService msgService;
 
-    @RequestMapping(value = "/entrance")
+    @Autowired
+    private Message message;
+
+    @RequestMapping(value = "/entrance", produces = "application/json;charset=utf-8")
     public String entryTest(HttpServletRequest request) throws Exception {
         // 微信加密签名
         String msgSignature = request.getParameter("signature");
@@ -68,6 +73,11 @@ public class EntryController {
             } else {
                 if (msgType.equals(Constant.MsgType.TEXT)) {
                     result = msgService.returnText(map);
+                } else if (msgType.equals(Constant.MsgType.EVENT)) {
+                    String event = map.get("Event");
+                    if (event.equals(Constant.Event.SUBSCRIBE)) { // 关注公众号
+                        result = msgService.returnText(map, message.getSubscribe());
+                    }
                 }
             }
         } catch (AesException e) {

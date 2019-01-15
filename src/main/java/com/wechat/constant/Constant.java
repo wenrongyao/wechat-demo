@@ -22,5 +22,14 @@ public class Constant {
      */
     public class MsgType {
         public static final String TEXT = "text";
+        public static final String EVENT = "event";
+    }
+
+    /**
+     * 事件类型
+     */
+    public class Event {
+        // 订阅
+        public static final String SUBSCRIBE = "subscribe";
     }
 }
