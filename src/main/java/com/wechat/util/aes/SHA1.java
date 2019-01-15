@@ -6,7 +6,7 @@
 
 // ------------------------------------------------------------------------
 
-package com.wechat.util;
+package com.wechat.util.aes;
 
 import java.security.MessageDigest;
 import java.util.Arrays;
@@ -30,7 +30,7 @@ class SHA1 {
 	 * @param nonce 随机字符串
 	 * @param encrypt 密文,对明文消息msg加密处理后的得到的
 	 * @return 安全签名
-	 * @throws AesException 
+	 * @throws AesException
 	 */
 	public static String getSHA1(String token, String timestamp, String nonce, String encrypt) throws AesException
 			  {
