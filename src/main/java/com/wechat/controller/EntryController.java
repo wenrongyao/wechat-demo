@@ -73,7 +73,7 @@ public class EntryController {
             } else {
                 if (msgType.equals(Constant.MsgType.TEXT)) {
                     result = msgService.returnText(map);
-                } else if (msgType.equals(Constant.MsgType.EVENT)) {
+                } else if (msgType.equals(Constant.MsgType.EVENT)) { //事件处理
                     String event = map.get("Event");
                     if (event.equals(Constant.Event.SUBSCRIBE)) { // 关注公众号
                         result = msgService.returnText(map, message.getSubscribe());
