@@ -36,6 +36,7 @@ public class Constant {
         // 订阅
         public static final String SUBSCRIBE = "subscribe";
         public static final String CLICK = "CLICK";
+        public static final String SCAN = "SCAN";
     }
 
     /**
