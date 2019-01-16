@@ -6,6 +6,10 @@ package com.wechat.constant;
  * 常量类
  */
 public class Constant {
+    /**
+     * accessToken
+     */
+    public static String ACCESS_TOKEN = "";
 
     /**
      * 微信公众号参数

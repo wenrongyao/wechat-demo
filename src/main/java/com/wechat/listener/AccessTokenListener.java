@@ -1,7 +1,5 @@
 package com.wechat.listener;
 
-import org.springframework.stereotype.Component;
-
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -14,7 +12,8 @@ import javax.servlet.annotation.WebListener;
 public class AccessTokenListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent servletContextEvent) {
-        System.out.println("监听器初始化");
+        // 启动accessToken获取线程
+        new Thread(new AccessTokenThread()).start();
     }
 
     @Override
