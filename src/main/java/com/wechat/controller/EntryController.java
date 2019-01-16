@@ -77,6 +77,11 @@ public class EntryController {
                     String event = map.get("Event");
                     if (event.equals(Constant.Event.SUBSCRIBE)) { // 关注公众号
                         result = msgService.returnText(map, message.getSubscribe());
+                    } else if (event.equals(Constant.Event.CLICK)) {
+                        String eventKey = map.get("EventKey");
+                        if (eventKey.equals("V1001_TODAY_MUSIC")) {
+                            result = msgService.returnText(map, "今日歌曲如下：");
+                        }
                     }
                 }
             }

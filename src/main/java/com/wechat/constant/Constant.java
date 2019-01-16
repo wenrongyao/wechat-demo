@@ -35,5 +35,13 @@ public class Constant {
     public class Event {
         // 订阅
         public static final String SUBSCRIBE = "subscribe";
+        public static final String CLICK = "CLICK";
+    }
+
+    /**
+     * 请求头类型
+     */
+    public class ContentType{
+        public static final String APPLICATION_JSON = "application/json;charset=utf-8";
     }
 }

@@ -3,7 +3,7 @@ package com.wechat.controller;
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.wechat.constant.Constant;
-import com.wechat.model.WeChatUserInfo;
+import com.wechat.model.user.WeChatUserInfo;
 import com.wechat.util.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

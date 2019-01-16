@@ -1,4 +1,4 @@
-package com.wechat.model;
+package com.wechat.model.user;
 
 import com.google.gson.annotations.SerializedName;
 
