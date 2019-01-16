@@ -1,9 +1,9 @@
 package com.wechat.controller;
 
-import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;
 import com.wechat.constant.Constant;
 import com.wechat.model.user.WeChatUserInfo;
+import com.wechat.util.GsonUtil;
 import com.wechat.util.HttpRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +23,7 @@ public class AuthorizationController {
      *
      * @return
      */
-    @RequestMapping("/base")
+    @RequestMapping("/snsApiBase")
     public String authorizationBase(String code) {
         ReturnMessage returnMessage = getAccesstoken(code);
         return "静默授权：oppenId=" + returnMessage.getOpenId();
@@ -34,18 +34,17 @@ public class AuthorizationController {
      *
      * @return
      */
-    @RequestMapping("/userInfo")
+    @RequestMapping("/snsApiUserInfo")
     public String authorizationUseInfo(String code) {
         ReturnMessage returnMessage = getAccesstoken(code);
         String getUserInfoUrl = GETUSERINFOURL.replace("{accessToken}", returnMessage.getAccessToken()).replace("{openId}", returnMessage.getOpenId());
         String userInfoStr = HttpRequest.get(getUserInfoUrl, null, false);
-        Gson gson = new Gson();
-        WeChatUserInfo weChatUserInfo = gson.fromJson(userInfoStr, WeChatUserInfo.class);
+        WeChatUserInfo weChatUserInfo = GsonUtil.fromJson(userInfoStr, WeChatUserInfo.class);
         return "非静默授权：" + weChatUserInfo.toString();
     }
 
     /**
-     * 获取accessToken
+     * 获取accessToken,和统一管理的accessToken是不同的
      *
      * @param code
      * @return
@@ -53,8 +52,7 @@ public class AuthorizationController {
     private ReturnMessage getAccesstoken(String code) {
         String getAccessTokenurl = GETACCESSTOKENURL.replace("{appId}", Constant.WechatAccount.APPID).replace("{secret}", Constant.WechatAccount.APPSECRET).replace("{code}", code);
         String returnMessageStr = HttpRequest.get(getAccessTokenurl, null, false);
-        Gson gson = new Gson();
-        return gson.fromJson(returnMessageStr, ReturnMessage.class);
+        return GsonUtil.fromJson(returnMessageStr, ReturnMessage.class);
     }
 }
 
